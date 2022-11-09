@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const customerSchema = mongoose.Schema({
   userName: String,
   passWord: String,
+  phoneNo:Number,
   latitude: Number,
   longitude: Number,
 });
