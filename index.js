@@ -7,7 +7,7 @@ import adminRouter from "./routes/Admin.js";
 import pemRoutes from "./routes/worker.js";
 import customerRoutes from "./routes/customer.js";
 import shopRoutes from "./routes/shop.js";
-
+import courseRoutes from './routes/course.js';
 // Morgan part--
 import morgan from "morgan";
 
@@ -62,6 +62,7 @@ app.use("/pem", pemRoutes);
 app.use("/customer", customerRoutes);
 app.use("/shop", shopRoutes);
 app.use("/admin", adminRouter);
+app.use("/course",courseRoutes)
 
 app.post("/payment", cors(), async (req, res) => {
   let { amount, id } = req.body;
