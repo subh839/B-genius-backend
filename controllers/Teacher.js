@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import PEMdetails from "../models/workerDetails.js";
+import PEMdetails from "../models/TeacherDetails.js";
 
 
 export const getPEM = async (req, res) => {

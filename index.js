@@ -3,10 +3,10 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import adminRouter from "./routes/Admin.js";
-const paymentRoutes = require("./routes/payment");
-import pemRoutes from "./routes/worker.js";
+// const paymentRoutes = require("./routes/payment");
+import pemRoutes from "./routes/Teacher.js";
 import customerRoutes from "./routes/customer.js";
-import shopRoutes from "./routes/shop.js";
+//import shopRoutes from "./routes/shop.js";
 import courseRoutes from './routes/course.js';
 // Morgan part--
 import morgan from "morgan";
@@ -60,7 +60,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use("/pem", pemRoutes);
 app.use("/customer", customerRoutes);
-app.use("/shop", shopRoutes);
+//app.use("/shop", shopRoutes);
 app.use("/admin", adminRouter);
 app.use("/course",courseRoutes)
 
@@ -87,10 +87,10 @@ app.use("/course",courseRoutes)
 //     });
 //   }
 // });
-app.use(express.json());
-app.use(cors());
+// app.use(express.json());
+// app.use(cors());
 
-app.use("/api/payment/", paymentRoutes);
+// app.use("/api/payment/", paymentRoutes);
 
 app.get("/send-text", (req, res) => {
   const { recipient, lat, lon, customer } = req.query;
