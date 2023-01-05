@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import adminRouter from "./routes/Admin.js";
-
+const paymentRoutes = require("./routes/payment");
 import pemRoutes from "./routes/worker.js";
 import customerRoutes from "./routes/customer.js";
 import shopRoutes from "./routes/shop.js";
@@ -25,8 +25,8 @@ const client = new twilio(accountSid, authToken);
 // Payment Imports
 import dotenv from "dotenv";
 dotenv.config();
-import Stripe from "stripe";
-export const stripe = new Stripe(process.env.STRIPE_SECRET_TEST);
+// import Stripe from "stripe";
+// export const stripe = new Stripe(process.env.STRIPE_SECRET_TEST);
 
 // creating app
 const app = express();
@@ -64,29 +64,33 @@ app.use("/shop", shopRoutes);
 app.use("/admin", adminRouter);
 app.use("/course",courseRoutes)
 
-app.post("/payment", cors(), async (req, res) => {
-  let { amount, id } = req.body;
-  try {
-    const payment = await stripe.paymentIntents.create({
-      amount,
-      currency: "USD",
-      description: "PEM",
-      payment_method: id,
-      confirm: true,
-    });
-    console.log("Payment", payment);
-    res.json({
-      message: "Payment done successfully",
-      success: true,
-    });
-  } catch (error) {
-    console.log("Error", error);
-    res.json({
-      message: "Oops !! Payment failed",
-      success: false,
-    });
-  }
-});
+// app.post("/payment", cors(), async (req, res) => {
+//   let { amount, id } = req.body;
+//   try {
+//     const payment = await stripe.paymentIntents.create({
+//       amount,
+//       currency: "USD",
+//       description: "PEM",
+//       payment_method: id,
+//       confirm: true,
+//     });
+//     console.log("Payment", payment);
+//     res.json({
+//       message: "Payment done successfully",
+//       success: true,
+//     });
+//   } catch (error) {
+//     console.log("Error", error);
+//     res.json({
+//       message: "Oops !! Payment failed",
+//       success: false,
+//     });
+//   }
+// });
+app.use(express.json());
+app.use(cors());
+
+app.use("/api/payment/", paymentRoutes);
 
 app.get("/send-text", (req, res) => {
   const { recipient, lat, lon, customer } = req.query;
