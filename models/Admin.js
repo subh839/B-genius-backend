@@ -11,4 +11,3 @@ const adminSchema = mongoose.Schema({
 const AdminDetails = mongoose.model("Admindetails", adminSchema);
 
 export default AdminDetails;
-

@@ -16,8 +16,6 @@ export const createCustomer = async (req, res) => {
   const customer = new CustomerDetails({
     userName: req.body.userName,
     passWord: req.body.passWord,
-    phoneNo:req.body.phoneNo,
-    Address:req.body.Address,
     latitude: req.body.latitude,
     longitude: req.body.longitude
   })

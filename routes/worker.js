@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getPEM, createPEM, updatePEM, deletePEM } from "../controllers/Teacher.js";
+import { getPEM, createPEM, updatePEM, deletePEM } from "../controllers/worker.js";
 
 const router = express.Router();
 
